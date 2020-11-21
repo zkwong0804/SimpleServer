@@ -17,8 +17,15 @@ namespace SimpleServer
             sc.Listen(3);
             try
             {
-                ns = new NetworkStream(sc.Accept());
-                ns.CopyTo(Console.OpenStandardOutput());
+                while(true)
+                { 
+                    Console.WriteLine($"A new messsage has arrive at: {DateTime.Today.ToString()}\n");
+                    ns = new NetworkStream(sc.Accept());
+                    if (ns.ToString().Contains("exit")) break;
+                    Console.WriteLine(ns.ToString());
+                    Console.WriteLine();
+                    Console.WriteLine();
+                }
             }
             catch(Exception ex)
             {
